@@ -4,35 +4,43 @@ import 'dart:convert';
 import 'package:weather_app/data/models/weather_model.dart';
 
 class WeatherService {
-  final String baseUrl = 'api.openweathermap.org';
-  final String path = '/data/2.5/weather';
-  final String apiKey = 'e42f46faaef415f0d37a26c37303807b';
+  WeatherService._();
+  static final WeatherService _instance = WeatherService._();
 
-  Future<WeatherModel?> fetchWeather(String city) async {
-    var url = Uri.https(baseUrl, path,
-        {'q': city, 'appid': apiKey, 'units': 'metric', 'lang': 'fa'});
+  factory WeatherService() {
+    return _instance;
+  }
+
+  final String _baseUrl = 'api.openweathermap.org';
+  final String _path = '/data/2.5/weather';
+  final String _apiKey = 'e42f46faaef415f0d37a26c37303807b';
+
+  Future<WeatherModel> getWeather(String city) async {
+    var url = Uri.https(_baseUrl, _path,
+        {'q': city, 'appid': _apiKey, 'units': 'metric', 'lang': 'fa'});
 
     try {
       final response = await http.get(url);
       switch (response.statusCode) {
         case 200:
           final Map<String, dynamic> data = jsonDecode(response.body);
-          WeatherModel? model = WeatherModel.fromJson(data);
+          WeatherModel model = WeatherModel.fromJson(data);
           model.iconUrl = _getIconUrl(model.icon);
           return model;
 
         case 401:
-          throw Exception("خطای احراز هویت");
+          throw CustomException("خطای احراز هویت");
         case 404:
-          throw Exception("شهر مورد نظر یافت نشد!");
-        case 500:
-          throw Exception("خطای سرور! لطفا بعدا امتحان کنید");
-
+          throw CustomException("شهر مورد نظر یافت نشد");
         default:
-          throw Exception("خطای نامشخص! کد خطا ${response.statusCode}");
+          throw CustomException("خطای نامشخص! کد خطا ${response.statusCode}");
       }
     } catch (e) {
-      throw Exception("خطا در دریافت اطلاعات : $e");
+      if (e is CustomException) {
+        rethrow;
+      } else {
+        throw CustomException("خطایی رخ داده است: $e");
+      }
     }
   }
 
@@ -40,4 +48,13 @@ class WeatherService {
     final String iconUrl = "https://openweathermap.org/img/wn/$icon@4x.png";
     return iconUrl;
   }
+}
+
+class CustomException implements Exception {
+  final String message;
+  final int? statusCode;
+  CustomException(this.message, {this.statusCode});
+
+  @override
+  String toString() => message;
 }
