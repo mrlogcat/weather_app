@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         color: const Color(0xff04215d),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 44, bottom: 28, right: 16, left: 16),
+              const EdgeInsets.only(top: 48, bottom: 28, right: 16, left: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -50,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Text(
                                   "$errorMessage",
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
