@@ -37,7 +37,7 @@ class WeatherService {
   }
 
   String _getIconUrl(String icon) {
-    final String iconUrl = "https://openweathermap.org/img/wn/$icon@2x.png";
+    final String iconUrl = "https://openweathermap.org/img/wn/$icon@4x.png";
     return iconUrl;
   }
 }

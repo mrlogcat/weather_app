@@ -9,16 +9,16 @@ class WeatherModel {
   final int humidity;
   final double windSpeed;
 
-  WeatherModel({
-    required this.cityName,
-    required this.statusCode,
-    required this.temperature,
-    required this.weatherCondition,
-    required this.weatherConditionEn,
-    required this.humidity,
-    required this.windSpeed,
-    required this.icon,
-  });
+  WeatherModel(
+      {required this.cityName,
+      required this.statusCode,
+      required this.temperature,
+      required this.weatherCondition,
+      required this.weatherConditionEn,
+      required this.humidity,
+      required this.windSpeed,
+      required this.icon,
+      this.iconUrl});
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
