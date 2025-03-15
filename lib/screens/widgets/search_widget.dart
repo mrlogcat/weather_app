@@ -14,14 +14,15 @@ class SearchWidget extends StatelessWidget {
         controller: controller,
         textInputAction: TextInputAction.search,
         keyboardType: TextInputType.text,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
         ),
         decoration: InputDecoration(
+          hoverColor: Colors.white,
           hintText: "شهر...",
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: Colors.grey),
           suffixIcon: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Colors.white,
             ),
@@ -33,7 +34,7 @@ class SearchWidget extends StatelessWidget {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.white,
             ),
           ),

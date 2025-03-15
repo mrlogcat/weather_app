@@ -33,13 +33,13 @@ class WeatherService {
         case 404:
           throw CustomException("شهر مورد نظر یافت نشد");
         default:
-          throw CustomException("خطای نامشخص! کد خطا ${response.statusCode}");
+          throw CustomException(" خطای تعریف نشده");
       }
     } catch (e) {
       if (e is CustomException) {
         rethrow;
       } else {
-        throw CustomException("خطایی رخ داده است: $e");
+        throw CustomException("خطایی در ارتباط رخ داده است");
       }
     }
   }

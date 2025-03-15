@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String searchedCity = "";
+  String searchedCity = "tehran";
   bool loading = false;
   String errorMessage = "";
   WeatherModel? dataModel;
@@ -24,12 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color(0xff011b54),
+        height: double.infinity,
+        color: const Color(0xff04215d),
         child: Padding(
           padding:
               const EdgeInsets.only(top: 44, bottom: 28, right: 16, left: 16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               SearchWidget(
                 callback: (searchedCity) {
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fetchWeather(searchedCity);
                 },
               ),
-              Expanded(
+              SingleChildScrollView(
                 child: loading
                     ? const Center(child: CircularProgressIndicator())
                     : (dataModel != null
@@ -76,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            " بروزرسانی ",
+                            "بروز رسانی",
                             style: TextStyle(color: Colors.black87),
                           ),
                           Icon(
@@ -114,8 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         loading = false;
         errorMessage = e.toString();
-        return;
+        this.dataModel = null;
       });
+      return null;
     }
   }
 }

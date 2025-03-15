@@ -7,9 +7,9 @@ class WeatherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 16, bottom: 16),
+      margin: const EdgeInsets.only(top: 16, bottom: 16),
       child: Card(
-        color: Colors.white12,
+        color: const Color(0xff294479),
         child: Padding(
           padding: const EdgeInsets.all(28.0),
           child: Column(
@@ -39,10 +39,10 @@ class WeatherCard extends StatelessWidget {
                     loadingBuilder: (context, child, loadingProgress) =>
                         loadingProgress == null
                             ? child
-                            : CircularProgressIndicator(),
+                            : const CircularProgressIndicator(),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 160),
+                    margin: const EdgeInsets.only(top: 160),
                     child: Text(
                       "${model.temperature.toInt()}" "\u2103",
                       style:
@@ -55,6 +55,9 @@ class WeatherCard extends StatelessWidget {
                 "${model.weatherCondition}",
                 style: const TextStyle(fontSize: 28, color: Colors.white),
               ),
+              SizedBox(
+                height: 64,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -64,9 +67,10 @@ class WeatherCard extends StatelessWidget {
                       children: [
                         Text(
                           "${model.humidity}%  :رطوبت ",
-                          style: TextStyle(color: Colors.white, fontSize: 14),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 14),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.water_drop_outlined,
                           color: Colors.white,
                           size: 14,
@@ -80,9 +84,10 @@ class WeatherCard extends StatelessWidget {
                       children: [
                         Text(
                           "${model.windSpeed.toInt()} km/h  :سرعت باد ",
-                          style: TextStyle(color: Colors.white, fontSize: 14),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 14),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.speed_outlined,
                           color: Colors.white,
                           size: 14,
