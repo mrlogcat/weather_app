@@ -1,5 +1,5 @@
 # flutter weather_app
-
+No additional libraries
 This is an flutter app that displays the weather for the searched city using https://openweathermap.org
 
 
